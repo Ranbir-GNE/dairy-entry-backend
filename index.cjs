@@ -7,16 +7,16 @@ const dairyRouter = require("./routes/dairyRoutes.cjs");
 const authMiddleware = require("./middleware/authMiddleware.cjs");
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// const corsOptions = {
-//   origin: "",
-//   methods: "GET,PUT,POST,DELETE",
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204,
-// };
+const corsOptions = {
+  origin: "*",
+  methods: "GET,PUT,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
+app.use(cors(corsOptions));
 
 dbConnect();
 
