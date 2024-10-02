@@ -10,13 +10,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const corsOptions = {
-  origin: "",
-  methods: "GET,PUT,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-};
-// app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: "",
+//   methods: "GET,PUT,POST,DELETE",
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204,
+// };
+app.use(cors());
 
 dbConnect();
 
