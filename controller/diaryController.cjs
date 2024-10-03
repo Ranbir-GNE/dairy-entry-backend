@@ -1,19 +1,6 @@
 const authModel = require("../models/authSchema.cjs");
 const diaryModel = require("../models/diarySchema.cjs");
 
-const getdiary = async (req, res) => {
-  try {
-    const diary = await diaryModel.find();
-    if (diary) {
-      return res.status(200).send(diary);
-    } else {
-      return res.status(404).send({ message: "No diary entry found" });
-    }
-  } catch (err) {
-    return res.status(500).send({ message: err.message });
-  }
-};
-
 const getdiaryById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -93,8 +80,8 @@ const deletediary = async (req, res) => {
   }
 };
 
-const getdiaryByUser = async (req, res) => {
-  const { id } = req.params;
+const getAllDiary = async (req, res) => {
+  const id = req.id;
   try {
     const userExists = await authModel.findOne({ _id: id });
     if (!userExists) {
@@ -104,7 +91,9 @@ const getdiaryByUser = async (req, res) => {
     if (diary.length > 0) {
       return res.status(200).send(diary);
     } else {
-      return res.status(404).send({ message: "No diary Entry has been found for this user" });
+      return res
+        .status(404)
+        .send({ message: "No diary Entry has been found for this user" });
     }
   } catch (err) {
     return res.status(500).send({ message: err.message });
@@ -112,10 +101,9 @@ const getdiaryByUser = async (req, res) => {
 };
 
 module.exports = {
-  getdiary,
+  getAllDiary,
   getdiaryById,
   postdiary,
   updatediary,
   deletediary,
-  getdiaryByUser,
 };
