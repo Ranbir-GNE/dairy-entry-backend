@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const dairySchema = new mongoose.Schema({
+const diarySchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -23,5 +23,5 @@ const dairySchema = new mongoose.Schema({
   },
 });
 
-const dairyModel = mongoose.model("dairy", dairySchema);
-module.exports = dairyModel;
+const diaryModel = mongoose.model("diary", diarySchema);
+module.exports = diaryModel;

@@ -3,7 +3,7 @@ const port = 3000;
 const { dbConnect } = require("./utils/dbConnect.cjs");
 const cors = require("cors");
 const authRouter = require("./routes/authRoutes.cjs");
-const dairyRouter = require("./routes/dairyRoutes.cjs");
+const diaryRouter = require("./routes/diaryRoutes.cjs");
 const authMiddleware = require("./middleware/authMiddleware.cjs");
 
 const app = express();
@@ -19,4 +19,4 @@ app.listen(port, () => {
 });
 
 app.use("/api/auth", authRouter);
-app.use("/api/dairy", authMiddleware, dairyRouter);
+app.use("/api/diary", authMiddleware, diaryRouter);
