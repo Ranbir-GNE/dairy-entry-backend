@@ -16,18 +16,23 @@ const getdiaryById = async (req, res) => {
 };
 
 const postdiary = async (req, res) => {
-  const { title, description, createdBy } = req.body;
-  if (!title || !description || !createdBy) {
+  const id = req.id;
+  const { title, description } = req.body;
+  if (!title || !description || !id) {
     return res
       .status(400)
       .send({ message: "Title, Description, and Creator are required fields" });
   }
-  const user = authModel.findOne(`${createdBy}`);
+  const user = authModel.findOne(id);
   if (!user) {
     return res.status(404).send({ message: "Not a valid User" });
   }
   try {
-    const diary = await diaryModel.create({ title, description, createdBy });
+    const diary = await diaryModel.create({
+      title,
+      description,
+      createdBy: id,
+    });
     return res.status(201).send(diary);
   } catch (err) {
     return res.status(500).send({ message: err.message });
