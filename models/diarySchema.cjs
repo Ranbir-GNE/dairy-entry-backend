@@ -15,7 +15,7 @@ const diarySchema = new mongoose.Schema({
     required: true,
   },
   media: {
-    type: String,
+    type: [String],
   },
   createdAt: {
     type: Date,
