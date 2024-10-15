@@ -18,7 +18,7 @@ const getdiaryById = async (req, res) => {
 const postdiary = async (req, res) => {
   const id = req.id;
   const { title, description ,media } = req.body;
-  if (!title || !description || !id || !media) {
+  if (!title || !description || !id ) {
     return res
       .status(400)
       .send({ message: "Title, Description, and Creator are required fields" });
